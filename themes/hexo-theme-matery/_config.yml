@@ -58,10 +58,10 @@ cover:
 # index page dream text,
 # 配置首页显示"梦想"的语句.
 dream:
-  enable: false
+  enable: true
   showTitle: true
   title: DON'T PANIC
-  text: 
+  text: The answer to the ultimate question of life, universe and everything is 42
 
 # Whether to display the musics.
 # 是否在首页显示音乐.
@@ -112,7 +112,7 @@ logo: /medias/logo.png
 # including the display name of the button, the font awesome icon, and the hyperlink to the button.
 # 首页 banner 中的第二个按钮的配置，包括按钮的显示名称、font awesome图标和按钮的超链接.
 indexbtn:
-  enable: true
+  enable: false
   name: Github
   icon: fab fa-github-alt
   url: https://github.com/Zhurp2020?tab=repositories
@@ -121,14 +121,14 @@ indexbtn:
 # icon/button will not show up if you leave the corresponding socialLink empty
 # 首页 banner 中的第二行个人信息配置，留空即不启用
 socialLink:
-  github:  https://github.com/Zhurp2020?tab=repositories
+  github:  
   email: 
   facebook: # https://www.facebook.com/xxx
   twitter: # https://twitter.com/xxx
   qq: 
   weibo: # https://weibo.com/xxx
   zhihu: # https://www.zhihu.com/xxx
-  rss: true # true、false
+  rss: false # true、false
 
 # Whether to activate the Post TOC, and Configure which title types are supported by TOC support.
 # You can add `toc: false` to the Front-matter of a post to turn off the TOC.
@@ -428,9 +428,9 @@ featureImages:
 # cc0（CC0 1.0 通用 (CC0 1.0) 公共领域贡献 CC0 1.0 Universal (CC0 1.0) Public Domain Dedication） https://creativecommons.org/publicdomain/zero/1.0/deed.zh
 
 # noreprint（不允许转载 not allowed to reprint）
-# pay（付费转载 pay for reprinting）
+# pay（付费转载  pay for reprinting）
 reprint:
-  enable: true # whether enable reprint section 是否启用“转载规则限定模块”
+  enable: false # whether enable reprint section 是否启用“转载规则限定模块”
   default: cc_by
 
 # DaoVoice online contact
@@ -478,7 +478,7 @@ addthis:
 # 打字效果副标题.
 # 如果有符号 ‘ ，请在 ’ 前面加上 \
 subtitle:
-  enable: true
+  enable: false
   loop: true # 是否循环
   showCursor: true # 是否显示光标
   startDelay: 300 # 开始延迟
