@@ -1,8 +1,11 @@
 ---
-title: Do you know where your towel is? -The Hitchhiker’s Guide to the Galaxy
+title: Do you know where your towel is? 
 date: 2020-02-05 20:37:38
-summary: The Hitchhiker’s Guide of Galaxy is popular for two reasons. First it’s cheap, and secondly, it has the words DON’T PANIC inscribed in large friendly letters on its cover. At least, the famous science fiction written by Douglas Adams says so. I bought it and disappointedly found that neither is true.
-tags:
+summary: The Hitchhiker’s Guide of Galaxy
+tags: 
+  - H2G2
+  - science fiction
+categories: Book
 ---
 # Do you know where your towel is? -The Hitchhiker’s guide to the Galaxy
 &emsp;*The Hitchhiker’s Guide of Galaxy* is popular for two reasons. First it’s cheap, and secondly, it has the words DON’T PANIC inscribed in large friendly letters on its cover. At least, the famous science fiction written by Douglas Adams says so. I bought it and disappointedly found that neither is true.  
