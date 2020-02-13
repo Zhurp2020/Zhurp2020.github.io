@@ -40,19 +40,53 @@ author: Zhurp
 1. 配置工具
    1. 安装Hexo  
       &emsp;&emsp;打开Node.js Command Prompt（Node.js命令行），输入如下命令
-      ```n4js
+      ``` n4js
       $ npm install -g hexo-cli
       ```
-      &emsp;&emsp;npm是Node.js的包管理工具，用来安装。可以用来从npm服务器上下载第三方包，也可以将自己的包上传到服务器上。  
+      &emsp;&emsp;npm是Node.js的包管理工具。可以用来从npm服务器上下载安装第三方包，也可以将自己的包上传到服务器上。  
       &emsp;&emsp;Hexo是一款轻量级的博客框架，基于Node.js。写文章时使用Markdown语法，然后只需要简单的配置就可以渲染出静态网页文件并部署到Github Pages。
-    2. VS Code插件安装  
-      &emsp;&emsp;需要用到的是npm和vscode-hexo两个插件。进入扩展商店安装这两个插件。这样之后所有操作都可以在VS Code里面操作了。
+    1. VS Code插件安装  
+      &emsp;&emsp;需要用到的是npm和vscode-hexo两个插件。进入扩展商店安装这两个插件。这样之后所有操作都可以在VS Code里面操作了。注意是图中的这两个插件。
       ![vscode-hexo插件](/pics/pic0/4.jpg)
       ![npm插件](/pics/pic0/5.jpg)
-      &emsp;&emsp;注意是图中的这两个插件
-2. 注册登录Github账号，开通Github Pages
-   &emsp;&emsp;可以参考Github Pages网站上的帮助[这里](https://pages.github.com/)
-   ![Github Pages](/pics/pic0/6.jpg)
-   &emsp;&emsp;登录Github账号，新建一个仓库，命名一定要是`用户名.github.io`的格式，一定要一字不差。
+2. 注册登录Github账号，开通Github Pages   
+   &emsp;&emsp;可以参考Github Pages网站上的帮助[这里](https://pages.github.com/)  
+   ![Github Pages](/pics/pic0/6.jpg)  
+   &emsp;&emsp;登录Github账号，新建一个仓库(repository)，命名一定要是`用户名.github.io`的格式，一定要一字不差。复制仓库地址备用。仓库地址看起来是这样的:`https://github.com/用户名/用户名.github.io.git`，当然你也可以通过配置SSH Key的方式来向仓库中上传文件。网站的部署将会通过push这个仓库完成。
+   ![新建仓库](/pics/pic0/7.jpg)
+3. 建立博客  
+   1. 建站  
+   &emsp;&emsp;打开VS Code，新建一个空文件夹，按下Ctrl+Shift+P打开命令面板，执行如下命令：
+   ``` bash
+   $ hexo init
+   ```
+   ![建站完成](/pics/pic0/8.jpg)
+   &emsp;&emsp;之后我们需要在本地安装相应的插件。执行如下命令：
+   ``` n4js
+   $ npm install saved packages
+   ```
+   &emsp;&emsp;执行完毕后会多出一个`node_modules`文件夹。  
+   ![安装插件](/pics/pic0/9.jpg)  
+   2. 写作  
+   &emsp;&emsp;执行如下命令
+   ``` bash
+   $ hexo new
+   ```
+   &emsp;&emsp;layout可以不用填，title必填。如果title中有多个空格需要加上双引号。之后会在`source/_posts`文件夹下生成一个`title.md`的文件，打开就可以开始使用Markdown语法写作了。
+   ![建立新页面](/pics/pic0/10.jpg)  
+   3. 预览  
+   &emsp;&emsp;在本地预览需要安装一个hexo-server插件。执行如下命令：
+   ``` n4js
+   $ npm install and save dependency
+   ```
+   &emsp;&emsp;然后输入hexo-server，等待完成。
+   ![安装插件](../pics/pic0/11.jpg)
+   &emsp;&emsp;要开始预览，执行如下命令：
+   ``` bash
+   $ hexo server
+   ```
+   &emsp;&emsp;处理完成后，就可以在本地[4000端口](http://localhost:4000/)预览效果。会自动追踪文件变更然后实时更新效果，不必重启服务器。
+  ![开启预览](../pics/pic0/12.jpg)
+  ![预览效果](../pics/pic0/13.jpg)
 ## 部署
 ## 更多
