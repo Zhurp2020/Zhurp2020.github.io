@@ -26,7 +26,7 @@ author: Zhurp
 &emsp;&emsp;关于这款编辑器的更多用法，将在另一篇文章中详细说明。
 2. Git  
 &emsp;&emsp;访问[这里](https://git-scm.com/)下载安装git，然后完成相关配置。  
-![git官网](/pics/pPic0/1.jpg)  
+![git官网](/pics/Pic0/1.jpg)  
 &emsp;&emsp;这里主要用到Git来部署网站到Github Pages。关于Git的其他用法，同样将在另一篇文章中说明
 1. Node.js  
 &emsp;&emsp;访问[这里](https://nodejs.org/en/)下载安装Node.js  
@@ -40,7 +40,7 @@ author: Zhurp
 1. 配置工具
    1. 安装Hexo  
       &emsp;&emsp;打开Node.js Command Prompt（Node.js命令行），输入如下命令
-      ``` n4js
+      ``` bash
       $ npm install -g hexo-cli
       ```
       &emsp;&emsp;npm是Node.js的包管理工具。可以用来从npm服务器上下载安装第三方包，也可以将自己的包上传到服务器上。  
@@ -62,7 +62,7 @@ author: Zhurp
    ```
    ![建站完成](/pics/pic0/8.jpg)
    &emsp;&emsp;之后我们需要在本地安装相应的插件。执行如下命令：
-   ``` n4js
+   ``` bash
    $ npm install saved packages
    ```
    &emsp;&emsp;执行完毕后会多出一个`node_modules`文件夹。  
@@ -76,17 +76,34 @@ author: Zhurp
    ![建立新页面](/pics/pic0/10.jpg)  
    3. 预览  
    &emsp;&emsp;在本地预览需要安装一个hexo-server插件。执行如下命令：
-   ``` n4js
+   ``` bash
    $ npm install and save dependency
    ```
    &emsp;&emsp;然后输入hexo-server，等待完成。
-   ![安装插件](../pics/pic0/11.jpg)
+   ![安装插件](/pics/pic0/11.jpg)
    &emsp;&emsp;要开始预览，执行如下命令：
    ``` bash
    $ hexo server
    ```
    &emsp;&emsp;处理完成后，就可以在本地[4000端口](http://localhost:4000/)预览效果。会自动追踪文件变更然后实时更新效果，不必重启服务器。
-  ![开启预览](../pics/pic0/12.jpg)
-  ![预览效果](../pics/pic0/13.jpg)
+  ![开启预览](/pics/pic0/12.jpg)
+  ![预览效果](/pics/pic0/13.jpg)
 ## 部署
+&emsp;&emsp;这里将使用git的方式部署博客。其他方式详见官方文档。打开博客文件夹下的`_config.yml`文件，在文件末尾添加如下代码，注意缩进：
+
+``` yml
+deploy: 
+  type: git  
+  repo: 'https://github.com/用户名/用户名.github.io.git' 
+  branch: master
+```
+&emsp;&emsp;然后执行如下命令：
+``` bash
+$ hexo deploy
+```
+&emsp;&emsp;这一步会渲染相应的静态网页文件，存放在`public`文件夹下，之后会将仓库`master`分支下的所有文件覆盖。过几分钟后，访问`用户名.github.io.`就可以看到效果了。
 ## 更多
++ 多台电脑编辑博客
++ 博客进一步美化：
+  + 安装主题
+  + 魔改主题 
