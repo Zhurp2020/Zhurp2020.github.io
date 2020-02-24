@@ -99,8 +99,8 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
   type: git
-  repo : https://github.com/Zhurp2020/Zhurp2020.github.io.git
-  branch : master
+  repo: https://github.com/Zhurp2020/Zhurp2020.github.io.git
+  branch: master
 
 
 # 自定义代码高亮
