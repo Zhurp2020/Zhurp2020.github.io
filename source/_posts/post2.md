@@ -46,9 +46,7 @@ selenium的官方文档在[这里](https://www.selenium.dev/documentation/zh-cn/
 ```python
 import selenium
 ```
-
 ### 第一步
-
 &emsp;&emsp;首先启动一个浏览器。当然除了chorme，selenium库还支持firefox等其他主流浏览器。这里用chorme作为例子。新建一个webdriver对象：
 ```python
 driver = webdriver.Chrome() 
@@ -129,4 +127,97 @@ def login(username,password,WebDriver) :
     InputAction.send_keys_to_element(PasswordInput,password)
     InputAction.click(LoginSubmit)
     InputAction.perform()
+```
+### 播放视频
+&emsp;&emsp;仿照以上的函数，可以很容易地写出跳转的课程页面、找到所有任务点，跳转并显示标题的功能。
+```python
+Classurl = '' # 课程链接
+def GotoClass(WebDriver) :
+    '''
+    前往课程页面，driver为必选参数
+    '''
+    WebDriver.get(ClassUrl)
+def FindCourse(WebDriver) :
+    '''
+    定位所有课
+    '''
+    courses = WebDriver.find_elements_by_class_name('articlename')
+    return courses
+def ShowTitle(WebDriver) :
+    '''
+    显示小节标题
+    '''
+    title = WebDriver.find_element_by_tag_name('h1').get_attribute('textContent')
+    print(title)
+```
+&emsp;&emsp;这些函数代码可以保存在`main.py`中，然后新建一个`playvideo.py`文件，调用这些函数。可以使用`time.sleep(2)`来加长等待，模仿人类操作。
+```python
+from main import *
+
+
+# 启动浏览器
+driver = webdriver.Chrome()  
+# 登录并跳转到课程
+login(SchoolName,UserName,Password,driver)
+# 前往指定课程
+GotoClass(driver)
+# 定位所有课
+courses = FindCourse(driver)
+for i in range(len(courses)) :
+    # 定位所有课
+    courses = FindCourse(driver)
+    # 跳转到具体页面
+    GotoCourse(courses[i],driver)
+    # 显示标题
+    time.sleep(2)
+    ShowTitle(driver)
+```
+&emsp;&emsp;于是我们可以来到视频页面，开始定位视频。要点击视频播放，只要点击相应的`<iframe>`元素即可。这里我们遇到了第一个问题，直接定位会报错，因为这个元素本身也在一个`<iframe>`里面。由于代码比较长，这里省略了一部分
+```html
+<iframe height="2017" id="iframe" f src="/knowledge/..." ...>
+   # document
+      ...
+      <iframe ... class="ans-attach-online ans-insertvideo-online" ...>
+      </iframe>
+      <iframe ... class="ans-attach-online ans-insertvideo-online" ...>
+      </iframe>
+      <iframe ... class="ans-attach-online insertdoc-online-ppt" ...">
+      </iframe>
+      ...
+</iframe>
+```
+&emsp;&emsp;要定位到`<iframe>`里面的元素，需要使用`webdriver.switch_to.frame(frame_reference)`方法。参数`frame_reference`可以是`name`，整数或者一个`webelement`。
+```python
+driver.switch_to.frame(0) # 切换到第一个iframe
+# 也可以这样
+driver.switch_to.frame('iframe')
+```
+&emsp;&emsp;接下来我们会遇到第二个问题，页面上不止一个`<iframe>`，有点是视频而有的不是，比如第一第二个是视频，而第三个是PPT。简单观察可以看出，关键是`class`属性中是否有`ans-insertvideo-online`。而通过`.get_attribute('')`方法可以获得一个属性。于是可以写一个函数，返回一个所有符合条件的`<iframe>`列表。
+```python
+def FindViedo (WebDriver) :
+    '''
+    寻找视频
+    '''
+    VideoList = []
+    VideoClassName = 'ans-insertvideo-online'
+    frames = WebDriver.find_elements_by_tag_name('iframe')
+    for i in range(len(frames)):
+        frames = WebDriver.find_elements_by_tag_name('iframe')
+        classname = frames[i].get_attribute('class')
+        if VideoClassName in classname :
+            VideoList.append(frames[i])
+    return VideoList
+```
+&emsp;&emsp;然后点击每一个元素，而如果页面上没有视频，则返回上一个页面。当然，这里有一个问题，还需要滚动页面到这个元素。selenium没有滚动屏幕的方法，可以借助js实现。
+```python
+videoes = FindViedo(driver)
+    if len(videoes) == 0:
+        print('无视频，返回')
+        GotoClass(driver)
+        continue
+    for j in range(len(videoes)):
+        videoes = FindViedo(driver)
+        driver.execute_script("arguments[0].scrollIntoView();",videoes[j]) # 滚动屏幕到这个元素
+        videoes[j].click()
+        print('开始播放视频')
 ```
