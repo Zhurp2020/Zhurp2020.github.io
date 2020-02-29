@@ -91,6 +91,7 @@ LoginSubmit = WebDriver.find_element_by_name('login_submit')
 InputAction = webdriver.ActionChains(driver)
 ```
 &emsp;&emsp;然后是点击和输入的操作。`.send_keys_to_element(element,keys_to_send)`用来模拟键盘输入。
+
 ```python
 username = '' #你的用户名
 password = '' #你的密码
@@ -175,14 +176,11 @@ for i in range(len(courses)) :
 &emsp;&emsp;于是我们可以来到视频页面，开始定位视频。要点击视频播放，只要点击相应的`<iframe>`元素即可。这里我们遇到了第一个问题，直接定位会报错，因为这个元素本身也在一个`<iframe>`里面。由于代码比较长，这里省略了一部分
 ```html
 <iframe height="2017" id="iframe" f src="/knowledge/..." ...>
-   # document
-      ...
-      <iframe ... class="ans-attach-online ans-insertvideo-online" ...>
-      </iframe>
-      <iframe ... class="ans-attach-online ans-insertvideo-online" ...>
-      </iframe>
-      <iframe ... class="ans-attach-online insertdoc-online-ppt" ...">
-      </iframe>
+    # document
+        ...
+        <iframe ... class="ans-attach-online ans-insertvideo-online" ...></iframe>
+        <iframe ... class="ans-attach-online ans-insertvideo-online" ...></iframe>
+        <iframe ... class="ans-attach-online insertdoc-online-ppt" ..."></iframe>
       ...
 </iframe>
 ```
@@ -192,7 +190,7 @@ driver.switch_to.frame(0) # 切换到第一个iframe
 # 也可以这样
 driver.switch_to.frame('iframe')
 ```
-&emsp;&emsp;接下来我们会遇到第二个问题，页面上不止一个`<iframe>`，有点是视频而有的不是，比如第一第二个是视频，而第三个是PPT。简单观察可以看出，关键是`class`属性中是否有`ans-insertvideo-online`。而通过`.get_attribute('')`方法可以获得一个属性。于是可以写一个函数，返回一个所有符合条件的`<iframe>`列表。
+&emsp;&emsp;接下来会遇到第二个问题，页面上不止一个`<iframe>`，有的是视频而有的不是，比如第一第二个是视频，而第三个是PPT。简单观察可以看出，关键是`class`属性中是否有`ans-insertvideo-online`。而通过`.get_attribute('')`方法可以获得一个属性。于是可以写一个函数，返回一个所有符合条件的`<iframe>`列表。
 ```python
 def FindViedo (WebDriver) :
     '''
@@ -220,4 +218,241 @@ videoes = FindViedo(driver)
         driver.execute_script("arguments[0].scrollIntoView();",videoes[j]) # 滚动屏幕到这个元素
         videoes[j].click()
         print('开始播放视频')
+```
+### 视频中的问题
+&emsp;&emsp;接下来判断视频是否结束。首先切换到这个`iframe`。
+```python
+driver.switch_to.frame(videoes[j])
+time.sleep(15)
+```
+&emsp;&emsp;然后找到进度条下面的现在时间和视频时间的元素。
+```html
+<span class="vjs-current-time-display" aria-live="off">0:03</span>
+<span class="vjs-duration-display" aria-live="off">13:18</span>
+```
+&emsp;&emsp;于是就可以获得相应的属性，判断视频是否结束。
+```python
+def isVideoOver(WebDriver) :
+    '''
+    视频是否结束
+    '''
+    duration = WebDriver.find_element_by_class_name('vjs-duration-display').get_attribute('textContent')
+    now = WebDriver.find_element_by_class_name('vjs-current-time-display').get_attribute('textContent')    
+    print('已播放{}/{}'.format(now,duration))
+    return duration == now
+```
+&emsp;&emsp;然后是视频中的题。这些题是可以暴力尝试答案的，只需要定位相应的选项和提交就可以了。题是随机出现的，html代码这里就不放了。注意当回答错误时，会弹出一个警告框，需要点掉才能继续操作。可以用`driver.switch_to.alert`方法切换到这个警告框，用`.accept()`方法接受（相当于点击确定按钮）。
+```python
+def ProbleminVideo(WebDriver) :
+    '''
+    处理视频中的题
+    '''
+    ProblemChoices = WebDriver.find_elements_by_name('ans-videoquiz-opt')
+    SubmitAnswer = WebDriver.find_element_by_class_name('ans-videoquiz-submit')
+    print('发现视频中题')
+    for i in range(len(ProblemChoices)) :
+        print('正在尝试第{}个选项'.format(i+1))
+        ProblemChoices = WebDriver.find_elements_by_name('ans-videoquiz-opt')
+        ProblemChoices[i].click()            
+        time.sleep(2)
+        SubmitAnswer.click()
+        time.sleep(2)
+        alert = WebDriver.switch_to.alert
+        alert.accept()
+```
+&emsp;&emsp;使用`try...except...`来处理这些随机出现的题，然后每隔10秒检查是否结束。
+```python
+while not isVideoOver(driver) :       
+    time.sleep(10)      
+    # 视频中是否有题，有则暴力尝试答题
+    try :
+        ProbleminVideo(driver)
+    except: 
+        continue
+```
+&emsp;&emsp;视频结束后，需要返回上一级`iframe`。
+```python
+driver.switch_to.parent_frame() 
+```
+&emsp;&emsp;所有视频结束后，还要返回默认`iframe`。
+```python
+driver.switch_to.default_content()
+```
+### 答题
+&emsp;&emsp;定位跳转到章节测验的按钮。
+```html
+<span title="章节测验" onclick="changeDisplayContent(2,2,'162839918','204664376','10593708','');" id="dct2" class="c2 ">章节测验</span>
+```
+```python
+def FindTestTag(WebDriver):
+    '''
+    定位答题标签
+    '''
+    TestTag = WebDriver.find_element_by_id('dct2')
+    print('发现题目')
+    TestTag.click()
+```
+&emsp;&emsp;点击跳转
+```python
+# 检查是否有题，有则跳转，否则进入下一课
+try :
+    FindTestTag(driver)
+except :
+    GotoClass(driver)
+    continue
+```
+&emsp;&emsp;题目藏得挺深，需要连续切换三层`iframe`。
+```html
+<iframe height="2955" id="iframe" frameborder="0" scrolling="no" ... >
+    # document
+    ...
+    <iframe ... frameborder="0" scrolling="no" width="650" ...  style="height: 1382px;">
+        ...
+        # document
+        <iframe id="frame_content" name="frame_content" ... ></iframe>
+    ...
+    </iframe>
+    ...
+</iframe>
+```
+```python
+time.sleep(3)
+driver.switch_to.frame('iframe')
+driver.switch_to.frame(0)
+driver.switch_to.frame('frame_content') 
+```
+&emsp;&emsp;定位所有选项和题目。
+```html
+<div style="width:80%;height:100%;float:left;">【单选题】人类在阶级社会当中解决安全问题最大的一种手段是（）。</div> 
+<!--> 题目长这样
+ 题目我全做完了，很遗憾无法展示选项的代码 <-->
+```
+&emsp;&emsp;题目的定位比较麻烦，元素本身没有提供可以供定位的信息，可以使用css选择器定位。在界面右侧找到相应的css文件，点进去可以直接找到这一行。
+```css
+.Zy_TItle i{width:55px;font-size:24px;color:#000000;text-align:center;}
+```
+&emsp;&emsp;然后就可以获取它的属性，然后用正则表达式加字符串切片匹配题干。这里写的比较糙，最终也没能找到一个完美的匹配方案。但是已经可以解决大部分问题了。
+```python
+import re
+
+# 用于匹配题目的正则表达式
+FindProblemText = re.compile(r'】.*?[？?（(。:：]+')
+FindChineseText = re.compile(r'[\u4e00-\u9fa5]+')
+
+def FindProblems(WebDriver) :
+    '''
+    匹配所有题目的题干，返回一个题目列表
+    '''
+    text = WebDriver.find_elements_by_css_selector('.Zy_TItle')
+    problems = []
+    for i in range(len(text)) :
+        ProblemText = text[i].get_attribute('textContent')
+        try :
+            ProblemText = FindProblemText.findall(ProblemText)[0]
+        except :
+            ProblemText = FindChineseText.findall(ProblemText)[0]
+        ProblemText = ProblemText.lstrip('】').rstrip('（').rstrip('？').rstrip('。').rstrip('(')
+        problems.append(ProblemText)
+    return problems
+```
+&emsp;&emsp;然后是定位选项，这个比较好办。
+```python
+def FindProblemChoices(WebDriver) :
+    '''
+    寻找所有选项，返回一个字典
+    '''
+    AllChoices = {'A':[],'B':[],'C':[],'D':[],'':[],'×':[]}
+    AllInput = WebDriver.find_elements_by_tag_name('input')
+    for AInput in AllInput :
+        ChoiceValue = AInput.get_attribute('value')
+        if ChoiceValue =='true':
+            ChoiceValue = '√'
+        elif ChoiceValue == 'false':
+            ChoiceValue = '×'
+        try :
+            AllChoices[ChoiceValue].append(AInput)
+        except :
+            pass
+    return AllChoices
+```
+&emsp;&emsp;接着在题库中寻找答案
+```python
+# 用于匹配答案的字符串和列表
+daan = '答案'
+answers = ['A','B','C','D','√','×']
+# 读取题库
+file = open('answer.txt','rb')
+lines = file.readlines()
+file.close()
+
+def FindAnswer(problem) :
+    '''
+    在题库中寻找题目的答案并返回
+    '''
+    j = 0
+    for i in range(6805):
+        words = str(lines[i].decode('utf-8'))
+        if problem[2:-2]in words:
+            j = i
+            break
+    while True :
+        words = str(lines[j].decode('utf-8'))
+        if daan in words :
+            for char in words :
+                if char in answers:
+                    return char
+            break
+        else:
+            j += 1
+```
+&emsp;&emsp;然后答题就可以了。注意要计算一下选择题的个数。
+```python
+def AnswerProblem(num,answer,choices,WebDriver) :
+    '''
+    回答问题，三个参数：题号，答案，存储所有选项的字典
+    '''
+    target = choices[answer][num]
+    WebDriver.execute_script("arguments[0].scrollIntoView();",target)
+    target.click()
+    print('第{}题，选择{}'.format(num+1,answer))
+```
+```python
+# 寻找所有题目
+ProblemList = FindProblems(driver)
+# 匹配题目答案
+AnswerList = [FindAnswer(j) for j in ProblemList]
+print('题目答案：',AnswerList)    
+# 寻找所有选项，并给出选择题个数
+AllChoicesDict = FindProblemChoices(driver)
+CountChoice = len(AllChoicesDict['A'])
+# 回答问题
+for j in range(len(AnswerList)) :
+    if AnswerList[j] == '×' or AnswerList[j] == '√':
+        AnswerProblem(j-CountChoice,AnswerList[j],AllChoicesDict,driver)
+    else :
+        AnswerProblem(j,AnswerList[j],AllChoicesDict,driver)
+    time.sleep(2)
+```
+&emsp;&emsp;最后一步，提交答案。注意这里需要向上滚动一下，执行js不管用，可以用按一下page up键解决。
+```python
+from selenium.webdriver.common.keys import Keys
+
+def SubmitAnswer(WebDriver) :
+    '''
+    提交答案
+    '''
+    SubmitButton = WebDriver.find_element_by_css_selector('.Btn_blue_1')
+    SubmitButton.click()
+    moveup = webdriver.ActionChains(WebDriver)
+    moveup.send_keys(Keys.PAGE_UP)
+    moveup.perform()
+    time.sleep(2)
+    confirm = WebDriver.find_element_by_class_name('bluebtn ')
+    confirm.click()
+```
+&emsp;&emsp;执行，然后返回课程页面，继续下一课，搞定~
+```python
+# 提交答案
+SubmitAnswer(driver)
+GotoClass(driver)
 ```
