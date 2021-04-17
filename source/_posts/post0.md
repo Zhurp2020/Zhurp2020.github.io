@@ -26,14 +26,14 @@ author: Zhurp
 &emsp;&emsp;关于这款编辑器的更多用法，将在另一篇文章中详细说明。
 2. Git  
 &emsp;&emsp;访问[这里](https://git-scm.com/)下载安装git，然后完成相关配置。  
-![git官网](/pics/Pic0/1.jpg)  
+![git官网](/pics/pic0/1.jpg)  
 &emsp;&emsp;这里主要用到Git来部署网站到Github Pages。关于Git的其他用法，同样将在另一篇文章中说明
 1. Node.js  
 &emsp;&emsp;访问[这里](https://nodejs.org/en/)下载安装Node.js  
 ![Node.js官网](/pics/pic0/2.jpg)  
 &emsp;&emsp;至此，完成了所需工具的安装
 ## 建站
-建站的流程可分G为以下几步：
+建站的流程可分为以下几步：
 + 配置工具
 + 注册登录Github账号，开通Github Pages
 + 建立博客
