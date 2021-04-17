@@ -1,0 +1,1168 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="如何优雅地刷学习通课程, zhurp">
+    <meta name="description" content="基于python和Selenium的学习通刷课脚本">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>如何优雅地刷学习通课程 | zhurp</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">zhurp</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">zhurp</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">如何优雅地刷学习通课程</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/github/">
+                                <span class="chip bg-color">github</span>
+                            </a>
+                        
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Tech/" class="post-category">
+                                Tech
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-02-22
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="如何优雅地刷学习通课程"><a href="#如何优雅地刷学习通课程" class="headerlink" title="如何优雅地刷学习通课程"></a>如何优雅地刷学习通课程</h1><p>项目Github地址：<a href="https://github.com/Zhurp2020/AutoStudy" target="_blank" rel="noopener">这里</a><br>克隆这个仓库：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone https://github.com/Zhurp2020/AutoStudy.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><ul>
+<li>python</li>
+<li>一个编辑器，推荐使用VS Code</li>
+<li>（非常推荐）分布式版本控制工具Git</li>
+<li>Selenium库</li>
+<li>Chorme Webdriver</li>
+</ul>
+<ol>
+<li>python<br>&emsp;&emsp;在官网<a href="https://www.python.org/" target="_blank" rel="noopener">这里</a>下载Python并安装<br><img src="/pics/pic2/1.jpg" alt="python官网"></li>
+<li>VS Code<br>&emsp;&emsp;访问<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">这里</a>下载安装VS Code。然后在扩展商店里安装python扩展。<br><img src="/pics/pic0/0.jpg" alt="VS Code官网"><br><img src="/pics/pic2/2.jpg" alt="python扩展"> </li>
+<li>Git<br>&emsp;&emsp;访问<a href="https://git-scm.com/" target="_blank" rel="noopener">这里</a>下载安装git，然后完成相关配置。<br><img src="/pics/Pic0/1.jpg" alt="git官网"></li>
+<li>Selenium库<br>&emsp;&emsp;可以使用<code>pip</code>安装这个库<pre class="line-numbers language-bash"><code class="language-bash">pip <span class="token function">install</span> selenium<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;这是一个自动化测试库，他可以自动操作浏览器。比如：访问页面，定位元素，输入点击等等。</li>
+<li>Chorme Webdriver<br>&emsp;&emsp;访问<a href="https://chromedriver.chromium.org/downloads" target="_blank" rel="noopener">这里</a>下载chorme Webdriver，注意<strong>一定要和当前使用的chorme版本相对应！</strong><br><img src="/pics/pic2/3.jpg" alt="chorme Webdriver"><br>&emsp;&emsp;下载完成后，把他解压，然后把<code>chormedriver.exe</code>移到python的安装目录下，这个目录看起来可能是这样的：<code>C:\Users\Administrator\AppData\Local\Programs\Python\Python38</code><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>selenium的官方文档在<a href="https://www.selenium.dev/documentation/zh-cn/getting_started/" target="_blank" rel="noopener">这里</a><br>找一个文件夹，新建一个<code>.py</code>文件，然后开始撸代码吧！<br>先导入模块  <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> selenium<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3>&emsp;&emsp;首先启动一个浏览器。当然除了chorme，selenium库还支持firefox等其他主流浏览器。这里用chorme作为例子。新建一个webdriver对象：<pre class="line-numbers language-python"><code class="language-python">driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;通过<code>webdriver.get(url)</code>方法访问一个页面。注意这个方法不会新建一个标签页，而是直接在当前页面上跳转。<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'http://www.elearning.shu.edu.cn/portal'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;可以运行测试一下效果<br><img src="/pics/pic2/4.jpg" alt=""><h3 id="定位并操作元素"><a href="#定位并操作元素" class="headerlink" title="定位并操作元素"></a>定位并操作元素</h3>&emsp;&emsp;接下来，我们要做的是点击登录按钮。首先，我们要在页面上定位这个按钮。selenium提供了数种方法定位元素。例如<code>webdriver.find_element_by_class_name(name)</code>将返回匹配<code>class</code>是<code>name</code>的元素。此外，还可以通过<code>tag_name</code>、<code>id</code>、<code>css_selector</code>、<code>link_text</code>、<code>name</code>、<code>partial_link_text</code>、<code>xpath</code>等匹配元素。<code>webdriver.find_element_by_class_name(name)</code>将返回第一个匹配的元素。相应地，<code>webdriver.find_elements_by_class_name(name)</code>则会返回一个由所有找到的元素组成的<code>list</code><br>&emsp;&emsp;按下<code>F12</code>或鼠标右键检查可以查看网页的源代码。点击代码中的元素，我们可以看见相应的蓝框。一步步缩小范围，最终可以找到相应的代码。<br><img src="/pics/pic2/5.jpg" alt="登录按钮的代码"><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>登录<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginSub<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goPassport2Login();<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;那么，就可以写出定位该元素的代码<pre class="line-numbers language-python"><code class="language-python">LoginButton <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token string">'loginSub'</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;通过<code>webelement.click()</code>方法可以点击该元素。<pre class="line-numbers language-python"><code class="language-python">LoginButton<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;接下来，就跳转到了登录页面。在这个页面，需要定位三个元素：用户名和密码的输入框以及登录按钮。<br><img src="/pics/pic2/6.jpg" alt="登录页面"><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>请输入账号/Campus ID Number<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>请输入密码/Password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>login_submit<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>login-submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>登录/Login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3>&emsp;&emsp;写出定位这三个元素的代码<pre class="line-numbers language-python"><code class="language-python">UsernameInput <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+PasswordInput <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+LoginSubmit <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'login_submit'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&emsp;&emsp;这里我们需要进行五个操作：分别点击两个输入框并输入用户名和密码，点击登录按钮。可以用到Action Chain（动作链）。先通过<code>webdriver.AnctionChains(driver)</code>方法创建一个动作链：<pre class="line-numbers language-python"><code class="language-python">InputAction <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>ActionChains<span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&emsp;&emsp;然后是点击和输入的操作。<code>.send_keys_to_element(element,keys_to_send)</code>用来模拟键盘输入。</li>
+</ol>
+<pre class="line-numbers language-python"><code class="language-python">username <span class="token operator">=</span> <span class="token string">''</span> <span class="token comment" spellcheck="true">#你的用户名</span>
+password <span class="token operator">=</span> <span class="token string">''</span> <span class="token comment" spellcheck="true">#你的密码</span>
+
+InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>UsernameInput<span class="token punctuation">)</span>
+InputAction<span class="token punctuation">.</span>send_keys_to_element<span class="token punctuation">(</span>UsernameInput<span class="token punctuation">,</span>username<span class="token punctuation">)</span>
+InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>PasswordInput<span class="token punctuation">)</span>
+InputAction<span class="token punctuation">.</span>send_keys_to_element<span class="token punctuation">(</span>PasswordInput<span class="token punctuation">,</span>password<span class="token punctuation">)</span>
+InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>LoginSubmit<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;最后，执行这个动作链。</p>
+<pre class="line-numbers language-python"><code class="language-python">InputAction<span class="token punctuation">.</span>perform<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>&emsp;&emsp;可以把登录封装成一个函数。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span>password<span class="token punctuation">,</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">''' 
+    登录，参数:学校，用户名，密码，webdriver
+    '''</span>
+    WebDriver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"http://www.elearning.shu.edu.cn/portal"</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 定位登录按钮并点击</span>
+    LoginButton <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token string">'.loginSub'</span><span class="token punctuation">)</span> 
+    LoginButton<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 用户名密码输入框，提交按钮</span>
+    UsernameInput <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+    PasswordInput <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+    LoginSubmit <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span><span class="token string">'login_submit'</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 输入用户名密码，提交       </span>
+    InputAction <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>ActionChains<span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>UsernameInput<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>send_keys_to_element<span class="token punctuation">(</span>UsernameInput<span class="token punctuation">,</span>username<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>PasswordInput<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>send_keys_to_element<span class="token punctuation">(</span>PasswordInput<span class="token punctuation">,</span>password<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>click<span class="token punctuation">(</span>LoginSubmit<span class="token punctuation">)</span>
+    InputAction<span class="token punctuation">.</span>perform<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="播放视频"><a href="#播放视频" class="headerlink" title="播放视频"></a>播放视频</h3><p>&emsp;&emsp;仿照以上的函数，可以很容易地写出跳转的课程页面、找到所有任务点，跳转并显示标题的功能。</p>
+<pre class="line-numbers language-python"><code class="language-python">Classurl <span class="token operator">=</span> <span class="token string">''</span> <span class="token comment" spellcheck="true"># 课程链接</span>
+<span class="token keyword">def</span> <span class="token function">GotoClass</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    前往课程页面，driver为必选参数
+    '''</span>
+    WebDriver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>ClassUrl<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">FindCourse</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    定位所有课
+    '''</span>
+    courses <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_class_name<span class="token punctuation">(</span><span class="token string">'articlename'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> courses
+<span class="token keyword">def</span> <span class="token function">ShowTitle</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    显示小节标题
+    '''</span>
+    title <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_tag_name<span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'textContent'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;这些函数代码可以保存在<code>main.py</code>中，然后新建一个<code>playvideo.py</code>文件，调用这些函数。可以使用<code>time.sleep(2)</code>来加长等待，模仿人类操作。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> main <span class="token keyword">import</span> <span class="token operator">*</span>
+
+
+<span class="token comment" spellcheck="true"># 启动浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token comment" spellcheck="true"># 登录并跳转到课程</span>
+login<span class="token punctuation">(</span>SchoolName<span class="token punctuation">,</span>UserName<span class="token punctuation">,</span>Password<span class="token punctuation">,</span>driver<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 前往指定课程</span>
+GotoClass<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 定位所有课</span>
+courses <span class="token operator">=</span> FindCourse<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>courses<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 定位所有课</span>
+    courses <span class="token operator">=</span> FindCourse<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 跳转到具体页面</span>
+    GotoCourse<span class="token punctuation">(</span>courses<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>driver<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 显示标题</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    ShowTitle<span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;于是我们可以来到视频页面，开始定位视频。要点击视频播放，只要点击相应的<code>&lt;iframe&gt;</code>元素即可。这里我们遇到了第一个问题，直接定位会报错，因为这个元素本身也在一个<code>&lt;iframe&gt;</code>里面。由于代码比较长，这里省略了一部分</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2017<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iframe<span class="token punctuation">"</span></span> <span class="token attr-name">f</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/knowledge/...<span class="token punctuation">"</span></span> <span class="token attr-name">...</span><span class="token punctuation">></span></span>
+    # document
+        ...
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">...</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ans-attach-online ans-insertvideo-online<span class="token punctuation">"</span></span> <span class="token attr-name">...</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">...</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ans-attach-online ans-insertvideo-online<span class="token punctuation">"</span></span> <span class="token attr-name">...</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">...</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ans-attach-online insertdoc-online-ppt<span class="token punctuation">"</span></span> <span class="token attr-name">..."</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+      ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;要定位到<code>&lt;iframe&gt;</code>里面的元素，需要使用<code>webdriver.switch_to.frame(frame_reference)</code>方法。参数<code>frame_reference</code>可以是<code>name</code>，整数或者一个<code>webelement</code>。</p>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 切换到第一个iframe</span>
+<span class="token comment" spellcheck="true"># 也可以这样</span>
+driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;接下来会遇到第二个问题，页面上不止一个<code>&lt;iframe&gt;</code>，有的是视频而有的不是，比如第一第二个是视频，而第三个是PPT。简单观察可以看出，关键是<code>class</code>属性中是否有<code>ans-insertvideo-online</code>。而通过<code>.get_attribute(&#39;&#39;)</code>方法可以获得一个属性。于是可以写一个函数，返回一个所有符合条件的<code>&lt;iframe&gt;</code>列表。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> FindViedo <span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    寻找视频
+    '''</span>
+    VideoList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    VideoClassName <span class="token operator">=</span> <span class="token string">'ans-insertvideo-online'</span>
+    frames <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_tag_name<span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>frames<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        frames <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_tag_name<span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span>
+        classname <span class="token operator">=</span> frames<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> VideoClassName <span class="token keyword">in</span> classname <span class="token punctuation">:</span>
+            VideoList<span class="token punctuation">.</span>append<span class="token punctuation">(</span>frames<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> VideoList<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;然后点击每一个元素，而如果页面上没有视频，则返回上一个页面。当然，这里有一个问题，还需要滚动页面到这个元素。selenium没有滚动屏幕的方法，可以借助js实现。</p>
+<pre class="line-numbers language-python"><code class="language-python">videoes <span class="token operator">=</span> FindViedo<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>videoes<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'无视频，返回'</span><span class="token punctuation">)</span>
+        GotoClass<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+        <span class="token keyword">continue</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>videoes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        videoes <span class="token operator">=</span> FindViedo<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+        driver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span><span class="token string">"arguments[0].scrollIntoView();"</span><span class="token punctuation">,</span>videoes<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 滚动屏幕到这个元素</span>
+        videoes<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'开始播放视频'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="视频中的问题"><a href="#视频中的问题" class="headerlink" title="视频中的问题"></a>视频中的问题</h3><p>&emsp;&emsp;接下来判断视频是否结束。首先切换到这个<code>iframe</code>。</p>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span>videoes<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;然后找到进度条下面的现在时间和视频时间的元素。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>vjs-current-time-display<span class="token punctuation">"</span></span> <span class="token attr-name">aria-live</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>0:03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>vjs-duration-display<span class="token punctuation">"</span></span> <span class="token attr-name">aria-live</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>13:18<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;于是就可以获得相应的属性，判断视频是否结束。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">isVideoOver</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    视频是否结束
+    '''</span>
+    duration <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token string">'vjs-duration-display'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'textContent'</span><span class="token punctuation">)</span>
+    now <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token string">'vjs-current-time-display'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'textContent'</span><span class="token punctuation">)</span>    
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'已播放{}/{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>now<span class="token punctuation">,</span>duration<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> duration <span class="token operator">==</span> now<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;然后是视频中的题。这些题是可以暴力尝试答案的，只需要定位相应的选项和提交就可以了。题是随机出现的，html代码这里就不放了。注意当回答错误时，会弹出一个警告框，需要点掉才能继续操作。可以用<code>driver.switch_to.alert</code>方法切换到这个警告框，用<code>.accept()</code>方法接受（相当于点击确定按钮）。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">ProbleminVideo</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    处理视频中的题
+    '''</span>
+    ProblemChoices <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_name<span class="token punctuation">(</span><span class="token string">'ans-videoquiz-opt'</span><span class="token punctuation">)</span>
+    SubmitAnswer <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token string">'ans-videoquiz-submit'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'发现视频中题'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>ProblemChoices<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'正在尝试第{}个选项'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        ProblemChoices <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_name<span class="token punctuation">(</span><span class="token string">'ans-videoquiz-opt'</span><span class="token punctuation">)</span>
+        ProblemChoices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>            
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        SubmitAnswer<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        alert <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>alert
+        alert<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;使用<code>try...except...</code>来处理这些随机出现的题，然后每隔10秒检查是否结束。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">while</span> <span class="token operator">not</span> isVideoOver<span class="token punctuation">(</span>driver<span class="token punctuation">)</span> <span class="token punctuation">:</span>       
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>      
+    <span class="token comment" spellcheck="true"># 视频中是否有题，有则暴力尝试答题</span>
+    <span class="token keyword">try</span> <span class="token punctuation">:</span>
+        ProbleminVideo<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span> 
+        <span class="token keyword">continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;视频结束后，需要返回上一级<code>iframe</code>。</p>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>parent_frame<span class="token punctuation">(</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>&emsp;&emsp;所有视频结束后，还要返回默认<code>iframe</code>。</p>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>default_content<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="答题"><a href="#答题" class="headerlink" title="答题"></a>答题</h3><p>&emsp;&emsp;定位跳转到章节测验的按钮。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>章节测验<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeDisplayContent(2,2,<span class="token punctuation">'</span>162839918<span class="token punctuation">'</span>,<span class="token punctuation">'</span>204664376<span class="token punctuation">'</span>,<span class="token punctuation">'</span>10593708<span class="token punctuation">'</span>,<span class="token punctuation">'</span><span class="token punctuation">'</span>);<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dct2<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c2 <span class="token punctuation">"</span></span><span class="token punctuation">></span></span>章节测验<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">FindTestTag</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    定位答题标签
+    '''</span>
+    TestTag <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_id<span class="token punctuation">(</span><span class="token string">'dct2'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'发现题目'</span><span class="token punctuation">)</span>
+    TestTag<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;点击跳转</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 检查是否有题，有则跳转，否则进入下一课</span>
+<span class="token keyword">try</span> <span class="token punctuation">:</span>
+    FindTestTag<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+<span class="token keyword">except</span> <span class="token punctuation">:</span>
+    GotoClass<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+    <span class="token keyword">continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;题目藏得挺深，需要连续切换三层<code>iframe</code>。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2955<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iframe<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>no<span class="token punctuation">"</span></span> <span class="token attr-name">...</span> <span class="token punctuation">></span></span>
+    # document
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">...</span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>no<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>650<span class="token punctuation">"</span></span> <span class="token attr-name">...</span><span class="token style-attr language-css"><span class="token attr-name">  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">1382</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        ...
+        # document
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>frame_content<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>frame_content<span class="token punctuation">"</span></span> <span class="token attr-name">...</span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+    ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>switch_to<span class="token punctuation">.</span>frame<span class="token punctuation">(</span><span class="token string">'frame_content'</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;定位所有选项和题目。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">80%</span><span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span><span class="token number">100%</span><span class="token punctuation">;</span><span class="token property">float</span><span class="token punctuation">:</span>left<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>【单选题】人类在阶级社会当中解决安全问题最大的一种手段是（）。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> 
+<span class="token comment" spellcheck="true">&lt;!--> 题目长这样
+ 题目我全做完了，很遗憾无法展示选项的代码 &lt;--></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;题目的定位比较麻烦，元素本身没有提供可以供定位的信息，可以使用css选择器定位。在界面右侧找到相应的css文件，点进去可以直接找到这一行。</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.Zy_TItle</span> i</span><span class="token punctuation">{</span><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">55</span>px<span class="token punctuation">;</span><span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">24</span>px<span class="token punctuation">;</span><span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span><span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>&emsp;&emsp;然后就可以获取它的属性，然后用正则表达式加字符串切片匹配题干。这里写的比较糙，最终也没能找到一个完美的匹配方案。但是已经可以解决大部分问题了。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> re
+
+<span class="token comment" spellcheck="true"># 用于匹配题目的正则表达式</span>
+FindProblemText <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'】.*?[？?（(。:：]+'</span><span class="token punctuation">)</span>
+FindChineseText <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'[\u4e00-\u9fa5]+'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">FindProblems</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    匹配所有题目的题干，返回一个题目列表
+    '''</span>
+    text <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_css_selector<span class="token punctuation">(</span><span class="token string">'.Zy_TItle'</span><span class="token punctuation">)</span>
+    problems <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+        ProblemText <span class="token operator">=</span> text<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'textContent'</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span> <span class="token punctuation">:</span>
+            ProblemText <span class="token operator">=</span> FindProblemText<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>ProblemText<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        <span class="token keyword">except</span> <span class="token punctuation">:</span>
+            ProblemText <span class="token operator">=</span> FindChineseText<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>ProblemText<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        ProblemText <span class="token operator">=</span> ProblemText<span class="token punctuation">.</span>lstrip<span class="token punctuation">(</span><span class="token string">'】'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token string">'（'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token string">'？'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token string">'。'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token string">'('</span><span class="token punctuation">)</span>
+        problems<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ProblemText<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> problems<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;然后是定位选项，这个比较好办。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">FindProblemChoices</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    寻找所有选项，返回一个字典
+    '''</span>
+    AllChoices <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'B'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'C'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'D'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'×'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+    AllInput <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_elements_by_tag_name<span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> AInput <span class="token keyword">in</span> AllInput <span class="token punctuation">:</span>
+        ChoiceValue <span class="token operator">=</span> AInput<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">'value'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> ChoiceValue <span class="token operator">==</span><span class="token string">'true'</span><span class="token punctuation">:</span>
+            ChoiceValue <span class="token operator">=</span> <span class="token string">'√'</span>
+        <span class="token keyword">elif</span> ChoiceValue <span class="token operator">==</span> <span class="token string">'false'</span><span class="token punctuation">:</span>
+            ChoiceValue <span class="token operator">=</span> <span class="token string">'×'</span>
+        <span class="token keyword">try</span> <span class="token punctuation">:</span>
+            AllChoices<span class="token punctuation">[</span>ChoiceValue<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>AInput<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> <span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+    <span class="token keyword">return</span> AllChoices<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;接着在题库中寻找答案</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 用于匹配答案的字符串和列表</span>
+daan <span class="token operator">=</span> <span class="token string">'答案'</span>
+answers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'B'</span><span class="token punctuation">,</span><span class="token string">'C'</span><span class="token punctuation">,</span><span class="token string">'D'</span><span class="token punctuation">,</span><span class="token string">'√'</span><span class="token punctuation">,</span><span class="token string">'×'</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 读取题库</span>
+file <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'answer.txt'</span><span class="token punctuation">,</span><span class="token string">'rb'</span><span class="token punctuation">)</span>
+lines <span class="token operator">=</span> file<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+file<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">FindAnswer</span><span class="token punctuation">(</span>problem<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    在题库中寻找题目的答案并返回
+    '''</span>
+    j <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">6805</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        words <span class="token operator">=</span> str<span class="token punctuation">(</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> problem<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token keyword">in</span> words<span class="token punctuation">:</span>
+            j <span class="token operator">=</span> i
+            <span class="token keyword">break</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span> <span class="token punctuation">:</span>
+        words <span class="token operator">=</span> str<span class="token punctuation">(</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> daan <span class="token keyword">in</span> words <span class="token punctuation">:</span>
+            <span class="token keyword">for</span> char <span class="token keyword">in</span> words <span class="token punctuation">:</span>
+                <span class="token keyword">if</span> char <span class="token keyword">in</span> answers<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> char
+            <span class="token keyword">break</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;然后答题就可以了。注意要计算一下选择题的个数。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">AnswerProblem</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span>answer<span class="token punctuation">,</span>choices<span class="token punctuation">,</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    回答问题，三个参数：题号，答案，存储所有选项的字典
+    '''</span>
+    target <span class="token operator">=</span> choices<span class="token punctuation">[</span>answer<span class="token punctuation">]</span><span class="token punctuation">[</span>num<span class="token punctuation">]</span>
+    WebDriver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span><span class="token string">"arguments[0].scrollIntoView();"</span><span class="token punctuation">,</span>target<span class="token punctuation">)</span>
+    target<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'第{}题，选择{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>num<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>answer<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 寻找所有题目</span>
+ProblemList <span class="token operator">=</span> FindProblems<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 匹配题目答案</span>
+AnswerList <span class="token operator">=</span> <span class="token punctuation">[</span>FindAnswer<span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token keyword">for</span> j <span class="token keyword">in</span> ProblemList<span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'题目答案：'</span><span class="token punctuation">,</span>AnswerList<span class="token punctuation">)</span>    
+<span class="token comment" spellcheck="true"># 寻找所有选项，并给出选择题个数</span>
+AllChoicesDict <span class="token operator">=</span> FindProblemChoices<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+CountChoice <span class="token operator">=</span> len<span class="token punctuation">(</span>AllChoicesDict<span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 回答问题</span>
+<span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>AnswerList<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token keyword">if</span> AnswerList<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'×'</span> <span class="token operator">or</span> AnswerList<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'√'</span><span class="token punctuation">:</span>
+        AnswerProblem<span class="token punctuation">(</span>j<span class="token operator">-</span>CountChoice<span class="token punctuation">,</span>AnswerList<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>AllChoicesDict<span class="token punctuation">,</span>driver<span class="token punctuation">)</span>
+    <span class="token keyword">else</span> <span class="token punctuation">:</span>
+        AnswerProblem<span class="token punctuation">(</span>j<span class="token punctuation">,</span>AnswerList<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>AllChoicesDict<span class="token punctuation">,</span>driver<span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;最后一步，提交答案。注意这里需要向上滚动一下，执行js不管用，可以用按一下page up键解决。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>keys <span class="token keyword">import</span> Keys
+
+<span class="token keyword">def</span> <span class="token function">SubmitAnswer</span><span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    提交答案
+    '''</span>
+    SubmitButton <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token string">'.Btn_blue_1'</span><span class="token punctuation">)</span>
+    SubmitButton<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    moveup <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>ActionChains<span class="token punctuation">(</span>WebDriver<span class="token punctuation">)</span>
+    moveup<span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>PAGE_UP<span class="token punctuation">)</span>
+    moveup<span class="token punctuation">.</span>perform<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    confirm <span class="token operator">=</span> WebDriver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token string">'bluebtn '</span><span class="token punctuation">)</span>
+    confirm<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;执行，然后返回课程页面，继续下一课，搞定~</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 提交答案</span>
+SubmitAnswer<span class="token punctuation">(</span>driver<span class="token punctuation">)</span>
+GotoClass<span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/github/">
+                                    <span class="chip bg-color">github</span>
+                                </a>
+                            
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/02/22/post2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="如何优雅地刷学习通课程">
+                        
+                        <span class="card-title">如何优雅地刷学习通课程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            基于python和Selenium的学习通刷课脚本
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/github/">
+                        <span class="chip bg-color">github</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/02/05/post1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Do you know where your towel is?">
+                        
+                        <span class="card-title">Do you know where your towel is?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            The Hitchhiker’s Guide of Galaxy
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Book/" class="post-category">
+                                    Book
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/H2G2/">
+                        <span class="chip bg-color">H2G2</span>
+                    </a>
+                    
+                    <a href="/tags/science-fiction/">
+                        <span class="chip bg-color">science fiction</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="http://Zhurp2020.github.io" target="_blank">Zhurp</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "2";
+                    var startDate = "2";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
