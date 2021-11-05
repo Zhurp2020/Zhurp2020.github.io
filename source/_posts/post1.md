@@ -5,7 +5,8 @@ summary: The Hitchhiker’s Guide of Galaxy
 tags: 
   - H2G2
   - science fiction
-categories: Book
+  - Homework
+categories: Writings
 ---
 # Do you know where your towel is? -The Hitchhiker’s guide to the Galaxy
 &emsp;*The Hitchhiker’s Guide of Galaxy* is popular for two reasons. First it’s cheap, and secondly, it has the words DON’T PANIC inscribed in large friendly letters on its cover. At least, the famous science fiction written by Douglas Adams says so. I bought it and disappointedly found that neither is true.  
